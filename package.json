@@ -7,7 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@jridgewell/sourcemap-codec": "^1.4.15",
     "core-js": "^3.8.3",
+    "element-plus": "^2.3.4",
+    "stable": "^0.1.8",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.3",
