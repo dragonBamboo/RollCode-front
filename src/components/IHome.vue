@@ -11,7 +11,7 @@
                     <el-col :span="5">
                         <!-- 导航栏 -->
                         <el-menu class="menu" default-active="1" mode="horizontal">
-                            <el-menu-item index="1">首页</el-menu-item>
+                            <el-menu-item index="1">首页11</el-menu-item>
                             <el-menu-item index="2">题库</el-menu-item>
                             <el-menu-item index="3">面试</el-menu-item>
                         </el-menu>
@@ -125,12 +125,12 @@ export default {
   line-height: 58px;
 }
 
-.menu /deep/ {
+.menu {
   width: 300px;
   border-bottom: none !important;
 }
 
-.el-input__wrapper /deep/ {
+.el-input__wrapper {
   border-radius: 20px !important;
   height: 38px;
 }
