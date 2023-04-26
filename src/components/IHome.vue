@@ -4,9 +4,9 @@
       <nav class="navbar">
         <div class="logo">Your Logo</div>
         <ul class="nav-links">
-          <li><a href="#">首页</a></li>
-          <li><a href="#">题库</a></li>
-          <li><a href="#">面试</a></li>
+          <li><a href="/">首页</a></li>
+          <li><a href="/questions">题库</a></li>
+          <li><a href="/interviews">面试</a></li>
         </ul>
         <div class="search-box">
           <input type="text" placeholder="搜索题目或面试相关信息">
@@ -53,7 +53,7 @@
       </div>
       
       <!-- 页脚 -->
-      <footer class="footer">
+      <!-- <footer class="footer">
         <div class="copyright">
           <p>版权声明：Your Copyright</p>
         </div>
@@ -63,7 +63,7 @@
         <div class="contact-us">
           <a href="#">联系我们</a>
         </div>
-      </footer>
+      </footer> -->
     </div>
   </template>
   
