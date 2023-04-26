@@ -8,7 +8,7 @@
                         <!-- Logo -->
                         <div class="logo">Your Logo</div>
                     </el-col>
-                    <el-col :span="5gitgit">
+                    <el-col :span="5">
                         <!-- 导航栏 -->
                         <el-menu class="menu" default-active="1" mode="horizontal">
                             <el-menu-item index="1">首页</el-menu-item>
