@@ -31,19 +31,20 @@ export default {
   </div>
 </template>
 <style scoped>
-  .banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 280px;
-    width: 76%;
-    margin: 40px auto;
-    margin-top: 70px;
-    border-radius: 25px;
-    overflow: hidden;
-  }
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 76%;
+  margin: 40px auto;
+  margin-top: 70px;
+  border-radius: 25px;
+  overflow: hidden;
+}
 
   .banner-image img {
+    display: flex;
     width: 100%;
     height: 100%;
     object-fit: cover;
