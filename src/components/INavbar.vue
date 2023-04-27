@@ -78,6 +78,7 @@ export default defineComponent({
 
 /* 导航栏样式 */
 .navbar {
+  
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
@@ -99,6 +100,7 @@ export default defineComponent({
 }
 .el-row{
   width: 100%!important;
+
 }
 
 .logo {
@@ -130,7 +132,6 @@ export default defineComponent({
   height: 58px;
   box-sizing: border-box;
   float: right;
-
 }
 .left{
   float: left;

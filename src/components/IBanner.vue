@@ -26,22 +26,33 @@ export default {
 <template>
     <div class="banner">
         <div class="banner-image">
-<!--            <img src="../assets/banner.jpg" alt="Banner Image">-->
-        <el-image :src="url" :fit="fit" alt="网络不佳" />
+            <img style="display: none" class="del" src="../assets/banner.jpg" alt="Banner Image">
+            <el-image :src="url" :fit="fit" alt="网络不佳"/>
         </div>
 
     </div>
 
 </template>
 <script>
-const baseURL = location.protocol+'//'+ location.hostname+':'+location.port
+const baseURL = location.protocol + '//' + location.hostname + ':' + location.port
 export default {
-    name:'IBanner',
+    name: 'IBanner',
     data() {
-        return{
-            url:`${baseURL}/img/banner.c25c3cb0.jpg`,
+        return {
+            url: `${baseURL}/img/banner.c25c3cb0.jpg`,
         }
     },
+    methods: {
+        del() {
+            const dels = document.querySelectorAll('.del');
+            dels.forEach(del =>{
+                del.remove()
+            })
+        },
+    },
+    mounted() {
+        this.del()
+    }
 }
 </script>
 <style scoped>
