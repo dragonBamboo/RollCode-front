@@ -24,29 +24,44 @@ export default {
 };
 </script> -->
 <template>
-  <div class="banner">
-    <div class="banner-image">
-      <img src="../assets/banner.jpg" alt="Banner Image">
+    <div class="banner">
+        <div class="banner-image">
+<!--            <img src="../assets/banner.jpg" alt="Banner Image">-->
+        <el-image :src="url" :fit="fit" alt="网络不佳" />
+        </div>
+
     </div>
-  </div>
+
 </template>
+<script>
+const baseURL = location.protocol+'//'+ location.hostname+':'+location.port
+export default {
+    name:'IBanner',
+    data() {
+        return{
+            url:`${baseURL}/img/banner.c25c3cb0.jpg`,
+        }
+    },
+}
+</script>
 <style scoped>
 .banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 76%;
-  margin: 40px auto;
-  margin-top: 70px;
-  border-radius: 25px;
-  overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /*width: 76%;*/
+    /*margin: 40px auto;*/
+    /*margin-top: 70px;*/
+    border-radius: 25px;
+    overflow: hidden;
 }
 
-  .banner-image img {
+.banner-image img {
     display: flex;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+}
+
 </style>
