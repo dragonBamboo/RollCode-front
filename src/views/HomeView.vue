@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <!-- <IHome /> -->
-        <el-container>
+        <el-container class="my-container">
             <el-header>
                 <INavbar/>
             </el-header>
@@ -54,5 +54,8 @@ export default {
 }
 .el-main{
     --el-main-padding:0px!important;
+}
+.my-container{
+    background-color: #f7f8f8;
 }
 </style>

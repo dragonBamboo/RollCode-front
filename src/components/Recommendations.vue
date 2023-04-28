@@ -19,7 +19,7 @@
             </el-row>
         </div>
         <div class="content">
-        <!-- 提供一些推荐，例如相关文章或资源链接 -->
+            <!-- 提供一些推荐，例如相关文章或资源链接 -->
         </div>
     </div>
 </template>
@@ -35,19 +35,22 @@ export default {
 .recommendations {
   margin-top: 20px;
   padding: 10px;
-  background-color: rgba(23, 187, 68, 0.17);
+  //background-color: rgba(23, 187, 68, 0.17);
+    background-color: #ffffff;
   border-radius: 25px;
 
   .recommendations-header {
     display: flex;
     height: 64px;
     align-items: center;
+    border-bottom: #f8f8f8 solid 1px;
+    box-sizing: border-box;
 
-    .recommend-text/deep/ {
-        font-size: 30px !important;
-        font-weight: bold;
-        font-family: '新宋体', Avenir, Helvetica, Arial, sans-serif;
-        color: #333333!important;
+    .recommend-text /deep/ {
+      font-size: 30px !important;
+      font-weight: bold;
+      font-family: '新宋体', Avenir, Helvetica, Arial, sans-serif;
+      color: #333333 !important;
     }
 
     .r-btn-parent {
