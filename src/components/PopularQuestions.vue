@@ -14,9 +14,10 @@
   <style scoped>
     /* PopularQuestions 样式 */
     .popular-questions {
-      margin-top: 50px;
+      margin-top: 10px;
       padding: 50px;
-      background-color: #f5f5f5;
+      background-color: #b47e7e;
+        border-radius: 15px;
     }
     .popular-questions h2 {
       font-size: 24px;

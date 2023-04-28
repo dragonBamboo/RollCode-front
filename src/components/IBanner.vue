@@ -1,35 +1,8 @@
-<!-- <template>
-  <el-carousel :interval="0" arrow="always">
-    <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-      <div class="banner">
-        <div class="banner-image">
-          <img :src="item.imgSrc" alt="Banner Image">
-        </div>
-      </div>
-    </el-carousel-item>
-  </el-carousel>
-</template>
-
-<script lang="ts">
-export default {
-  data() {
-    return {
-      bannerList: [
-        { imgSrc: "../assets/banner.jpg" },
-        // { imgSrc: "/src/assets/Banner.jpg" },
-        // { imgSrc: "/src/assets/banner.jpg" },
-      ],
-    };
-  },
-};
-</script> -->
 <template>
     <div class="banner">
-        <div class="banner-image">
-            <img style="display: none" class="del" src="../assets/banner.jpg" alt="Banner Image">
-            <el-image :src="url" :fit="fit" alt="网络不佳"/>
-        </div>
-
+<!--        <div class="banner-image">-->
+            <el-image :src="require('@/assets/banner.jpg')" :fit="fit" alt="网络不佳"/>
+<!--        </div>-->
     </div>
 
 </template>
@@ -39,40 +12,36 @@ export default {
     name: 'IBanner',
     data() {
         return {
-            url: `${baseURL}/img/banner.c25c3cb0.jpg`,
+
         }
     },
     methods: {
-        del() {
-            const dels = document.querySelectorAll('.del');
-            dels.forEach(del =>{
-                del.remove()
-            })
-        },
+
     },
     mounted() {
-        this.del()
+
     }
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 .banner {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    /*width: 76%;*/
+    width: 100%;
     /*margin: 40px auto;*/
     /*margin-top: 70px;*/
     border-radius: 25px;
     overflow: hidden;
-}
-
-.banner-image img {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    el-image{
+        top:0;
+        left:0;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 </style>

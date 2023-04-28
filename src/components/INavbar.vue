@@ -1,9 +1,8 @@
 <template>
     <!-- 导航栏 -->
     <div class="navbar">
-      <el-row>
-          <el-col :span="2"></el-col>
-        <el-col :span="2">
+      <el-row justify="center">
+        <el-col :span="2" >
           <!-- Logo -->
           <div class="logo">Your Logo</div>
         </el-col>
@@ -32,20 +31,17 @@
 <!--            <el-input class="search-input" placeholder="搜索题目或面试相关信息" suffix-icon="el-icon-search"></el-input>-->
           </div>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="3">
           <!-- 登录按钮 -->
 <!--          <div class="menu-item-warpper left">-->
 <!--            <el-button class="search-btn" round type="success" size="large">搜索</el-button>-->
 <!--          </div>-->
         </el-col>
-        <el-col :span="1"></el-col>
         <el-col :span="2">
           <div class="menu-item-warpper">
             <el-button class="login-btn" round type="success" size="large">登录/注册</el-button>
           </div>
         </el-col>
-          <el-col :span="2">
-          </el-col>
       </el-row>
     </div>
 </template>

@@ -5,18 +5,23 @@
             <el-header>
                 <INavbar/>
             </el-header>
-            <el-row>
-                <el-col :span="2"></el-col>
+            <el-row justify="center">
                 <el-col :span="20">
                     <el-main>
                         <IBanner/>
-                        <PopularQuestions/>
-                        <LatestInterviewQuestions/>
-                        <Recommendations/>
-                        <Features/>
+                        <el-container>
+                            <el-main>
+                                <Recommendations/>
+                            </el-main>
+                            <el-aside>
+                                <Features/>
+                                <PopularQuestions/>
+                                <LatestInterviewQuestions/>
+                            </el-aside>
+                        </el-container>
+
                     </el-main>
                 </el-col>
-                <el-col :span="2"></el-col>
             </el-row>
         </el-container>
     </div>
