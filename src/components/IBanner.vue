@@ -1,35 +1,47 @@
-<!-- <template>
-  <el-carousel :interval="0" arrow="always">
-    <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-      <div class="banner">
-        <div class="banner-image">
-          <img :src="item.imgSrc" alt="Banner Image">
-        </div>
-      </div>
-    </el-carousel-item>
-  </el-carousel>
-</template>
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      bannerList: [
-        { imgSrc: "../assets/banner.jpg" },
-        // { imgSrc: "/src/assets/Banner.jpg" },
-        // { imgSrc: "/src/assets/banner.jpg" },
-      ],
-    };
-  },
-};
-</script> -->
 <template>
   <div class="banner">
     <div class="banner-image">
       <img src="../assets/banner.jpg" alt="Banner Image">
     </div>
   </div>
+
+    <el-radio-group v-model="labelPosition" label="label position">
+      <el-radio-button label="left">Left</el-radio-button>
+      <el-radio-button label="right">Right</el-radio-button>
+      <el-radio-button label="top">Top</el-radio-button>
+    </el-radio-group>
+    <div style="margin: 20px" />
+    <el-form
+      :label-position="labelPosition"
+      label-width="100px"
+      :model="formLabelAlign"
+      style="max-width: 460px"
+    >
+      <el-form-item label="Name">
+        <el-input v-model="formLabelAlign.name" />
+      </el-form-item>
+      <el-form-item label="Activity zone">
+        <el-input v-model="formLabelAlign.region" />
+      </el-form-item>
+      <el-form-item label="Activity form">
+        <el-input v-model="formLabelAlign.type" />
+      </el-form-item>
+    </el-form>
+
+  
 </template>
+<script lang="ts" setup>
+import { reactive, ref } from 'vue'
+
+const labelPosition = ref('right')
+
+const formLabelAlign = reactive({
+  name: '',
+  region: '',
+  type: '',
+})
+</script>
 <style scoped>
 .banner {
   display: flex;

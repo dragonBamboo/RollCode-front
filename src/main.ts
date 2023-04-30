@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import INavbar from '@/components/INavbar.vue';
 import Test2 from '@/components/Test2.vue';
+// import LoginorRegister from "@/components/LoginorRegister.vue";
 import ElementPlus from "element-plus"
 import 'element-plus/dist/index.css'
 const app = createApp(App);
@@ -14,5 +15,6 @@ app.use(ElementPlus)
 
 app.component('INavbar', INavbar);
 app.component('Test2', Test2);
+// app.component('LoginorRegister', LoginorRegister);
 
 app.mount('#app');
