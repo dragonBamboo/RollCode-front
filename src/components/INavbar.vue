@@ -23,7 +23,7 @@
                 style="background-color: transparent; outline: none; box-shadow: none;border: 0px; padding-left: 20px; font-size: 16px; line-height: 50px">
               <span style="color:#dfdfdf;" class="no-hover">|</span>
               <!--                  <button type="button" style="background-color: transparent; border: none;">按钮</button>-->
-              <el-button class="search-btn" type="success" size="20px" text>
+              <el-button class="search-btn" type="success" :style="{ fontSize: '20px' }" text>
                 <el-icon size="20px">
                   <Search></Search>
                 </el-icon>&nbsp;

@@ -28,43 +28,50 @@
       </el-row>
     </div>
     <div class="content">
-      <div>
-        <h3>{{ title }}</h3>
+      <div class="content-css">
         <ul>
           <li v-for="link in links" :key="link.id">
             <div class="link-items">
-              <div class="link-title">
-                <a :href="link.user_icon" target="_blank">{{ link.user_icon }}</a>
+
+              <div class="link-header">
+                <img :src="link.user_icon" target="_blank" />
                 <a :href="link.url" target="_blank">{{ link.title }}</a>
                 <span></span>
               </div>
-              <div class="link-contents">
-                <div class="link-box">
-                  <div class="link-labels">{{ link.labels }}</div>
-                  <div class="link-content">{{ link.content }}</div>
+              <div class="link-body">
+
+                <!-- 论坛标题下行 -->
+                <div class="link-body-box">
+                  <!-- 论坛标签 -->
+                  <div class="link-box-labels">{{ link.labels }}</div>
+                  <!-- 论坛内容 -->
+                  <div class="link-box-content">{{ link.content }}</div>
                 </div>
-                <div class="link-item">
-                  <div class="views">
+
+                <!-- 论坛内容下行item -->
+                <div class="link-body-item">
+                  <div class="link-item-views">
                     <el-icon content="浏览量">
                       <View />
                     </el-icon>
                     <span class="views-count">{{ link.views }}</span>
                   </div>
-                  <div class="comments">
+                  <div class="link-item-comments">
                     <el-icon content="评论数">
                       <ChatRound />
                     </el-icon>
                     <span class="comments-count">{{ link.comments }}</span>
                   </div>
-                  <div class="likes">
+                  <div class="link-item-likes">
                     <el-icon content="点赞数">
                       <Star />
                     </el-icon>
                     <span class="likes-count">{{ link.likes }}</span>
                   </div>
+
                 </div>
               </div>
-              
+
             </div>
           </li>
           <li v-if="!links.length">暂无数据</li>
@@ -80,9 +87,9 @@ import axios from 'axios';
 const activeName = ref('first')
 const title = ref('');
 const links = ref([
-  { id: 1, user_icon: '', title: '示例链接1', url: 'http://example.com/1', labels:'笔试', likes: 10, comments: 30, content: "从今年开始，经过为期四个月的时间，终于从1750上分到了2000，其中在1900分段感觉呆了一个世纪，要不是上周第三题最短路给搞了出来，估计还在1900", time: "", views: "30"},
-  { id: 2, user_icon: '', title: '示例链接2', url: 'http://example.com/2', labels:'', likes: 20, comments: 30, content: "从今年开始，经过为期四个月的时间，终于从1750上分到了2000，其中在1900分段感觉呆了一个世纪，要不是上周第三题最短路给搞了出来，估计还在1900", time: "", views: "30" },
-  { id: 3, user_icon: '', title: '示例链接3', url: 'http://example.com/3', labels:'', likes: 30, comments: 30, content: "从今年开始，经过为期四个月的时间，终于从1750上分到了2000，其中在1900分段感觉呆了一个世纪，要不是上周第三题最短路给搞了出来，估计还在1900", time: "", views: "30" },
+  { id: 1, user_icon: 'https://assets.leetcode.cn/aliyun-lc-upload/uploaded_files/2021/03/73c9f099-abbe-4d94-853f-f8abffd459cd/leetcode.png?x-oss-process=image%2Fresize%2Ch_44%2Cw_44%2Fformat%2Cwebp', title: '如何在「求职面试」中发布一篇帖子？', url: 'http://example.com/1', labels: '笔试', likes: 10, comments: 30, content: "从今年开始，经过为期四个月的时间，终于从1750上分到了2000，其中在1900分段感觉呆了一个世纪，要不是上周第三题最短路给搞了出来，估计还在1900", time: "", views: "30" },
+  { id: 2, user_icon: 'https://assets.leetcode.cn/aliyun-lc-upload/uploaded_files/2021/03/73c9f099-abbe-4d94-853f-f8abffd459cd/leetcode.png?x-oss-process=image%2Fresize%2Ch_44%2Cw_44%2Fformat%2Cwebp', title: '请问除了大厂外企还有哪些厂考算法？', url: 'http://example.com/2', labels: '', likes: 20, comments: 30, content: "从今年开始，经过为期四个月的时间，终于从1750上分到了2000，其中在1900分段感觉呆了一个世纪，要不是上周第三题最短路给搞了出来，估计还在1900", time: "", views: "30" },
+  { id: 3, user_icon: 'https://assets.leetcode.cn/aliyun-lc-upload/uploaded_files/2021/03/73c9f099-abbe-4d94-853f-f8abffd459cd/leetcode.png?x-oss-process=image%2Fresize%2Ch_44%2Cw_44%2Fformat%2Cwebp', title: '请问一下，二本院校有参加华为od笔试的资格吗？', url: 'http://example.com/3', labels: '', likes: 30, comments: 30, content: "从今年开始，经过为期四个月的时间，终于从1750上分到了2000，其中在1900分段感觉呆了一个世纪，要不是上周第三题最短路给搞了出来，估计还在1900", time: "", views: "30" },
 ]);
 
 const fetchRecommendations = async () => {
@@ -110,9 +117,7 @@ onMounted(() => {
 .recommendations {
   margin-top: 12px;
   padding: 10px;
-  background-color: #ffffff;
   border-radius: 25px;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
 
   .recommendations-header {
     display: flex;
@@ -178,47 +183,110 @@ onMounted(() => {
             }
           }
 
-          
+
         }
       }
     }
   }
 }
+
 .link-items {
-  display: flex;
+  display: block;
   align-items: center;
+  overflow: hidden; /* 隐藏溢出部分 */
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+
+  .link-header {
+    display: flex;
+    align-items: left;
+    margin-bottom: 10px;
+
+    a {
+      margin-top: 17px;
+      margin-left: 17px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-left: 10px;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      margin-top: 18px;
+      margin-left: 18px;
+      
+    }
+
+    span {
+
+      height: 2px; // 修改分割线的高度
+      background-color: #dcdfe6;
+      margin-left: 10px;
+    }
+  }
 }
 
-.link-items a {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
+
+
+
+.link-body {
+  text-align: left;
+  margin-left: 18px;
+  
+  .link-body-box {
+    width: 300px;
+    margin-right: 10px;
+    .link-box-labels {
+      display: inline-block; // 设置为行内块级元素
+      border-radius: 13px;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 20px;
+      background-color: rgba(0, 10, 32, 0.05);
+      color: #8e8e8e;
+      padding: 3px 10px;
+      margin-bottom: 10px;
+  
+    }
+  
+    .link-box-content {
+      display: inline-block; /* 显示为内联块元素，自适应宽度 */
+      font-size: 14px;
+      color: #666;
+      width: 300px;
+      flex: 1; /* 自适应宽度 */
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 10px;
+    }
+  }
+
+  
+
 }
 
-.icon {
-  font-size: 20px;
-  margin-right: 5px;
+.link-body-item{
+  display: flex!important; // 设置为行内块级元素
+  margin: 10px; /* 左右两边各留出10像素的间距 */
+
+  > *{
+    margin: 10px;
+  }
 }
 
 .views-count,
 .comments-count,
 .likes-count {
+  margin: 5px;
   font-size: 14px;
   color: #999;
-}
 
-.link-labels {
-  border-radius: 13px;
-  height: 27px;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 20px;
-  display: flex;
-  align-items: center;
-  background-color: rgba(0,10,32,0.05);
-  color: #8e8e8e;
-  padding: 0px 9px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
 <!--        <div class="banner-image">-->
-          <el-image :src="require('@/assets/banner.jpg')" :fit="fit" alt="网络不佳" class="image"/>
+          <el-image :src="require('@/assets/banner.jpg')" alt="网络不佳" class="image"/>
 <!--        </div>-->
   </div>
 
