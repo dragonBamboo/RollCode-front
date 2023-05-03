@@ -1,0 +1,11 @@
+// styles.less
+
+.el-link {
+    color: black; /* 设置默认文本颜色 */
+    text-decoration: none; /* 设置默认下划线为 none */
+    
+    &:hover {
+      color: red; /* 设置悬停文本颜色为红色 */
+      text-decoration: none; /* 设置悬停下划线为 none */
+    }
+  }
