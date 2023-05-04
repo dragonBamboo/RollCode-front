@@ -3,21 +3,21 @@
         <!-- <IHome /> -->
         <el-container class="my-container">
             <el-header>
-                <INavbar/>
+                <INavbar />
             </el-header>
             <el-row justify="center">
                 <el-col :span="20">
                     <el-main>
-                        <IBanner/>
+                        <IBanner />
                         <el-container>
                             <el-main>
-                                <HomeTitle/>
+                                <HomeTitle />
 
                             </el-main>
                             <el-aside>
-                                <Features/>
-                                <JobAbilitiesTest/>
-                                <LatestInterviewQuestions/>
+                                <Features />
+                                <JobAbilitiesTest />
+                                <LatestInterviewQuestions />
                             </el-aside>
                         </el-container>
 
@@ -54,16 +54,17 @@ export default {
 </script>
 
 <style lang="less">
-.el-row{
-    width: 100%!important;
+.el-row {
+    width: 100% !important;
 }
-.el-main{
-    --el-main-padding:0px!important;
+
+.el-main {
+    --el-main-padding: 0px !important;
     margin: 0 30px;
     justify-content: center;
 }
-.my-container{
+
+.my-container {
     background-color: #f7f8f8;
 }
-
 </style>

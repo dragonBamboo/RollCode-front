@@ -5,7 +5,7 @@
       <el-row justify="center">
         <el-col :span="2">
           <!-- Logo -->
-          <img src="../assets/logo.png" target="_blank" class="logo-img"/>
+          <img src="../assets/logo.png" target="_blank" class="logo-img" />
           <!-- <el-image src="../assets/logo.png" fit="contain"></el-image> -->
 
         </el-col>
@@ -50,46 +50,51 @@
       </el-row>
     </el-header>
     <div>
-      <el-dialog v-model="dialogLoginRegisterVisible" :before-close="handleClose" title="登录/注册">
+      <el-dialog v-model="dialogLoginRegisterVisible" :before-close="handleClose" title="登录/注册" :lock-scroll="false">
         <div class="login-register-container">
-          <div class="qr-code-login">
+          <!-- <div class="qr-code-login">
             <h3>扫码登录</h3>
-            <el-image src="https://picsum.photos/200/200" fit="contain"></el-image>
-          </div>
+            <el-image :src="require('@/assets/login.jpg')" fit="contain"></el-image>
+          </div> -->
           <div class="form-container">
-            <el-form :model="defalutLoginform" :rules="rules" ref="Loginform" label-width="0">
-              <el-tabs v-model="activeTab">
-                <el-tab-pane label="注册/登录" name="register">
-                  <el-form-item label="手机号码" prop="phone">
-                    <el-input v-model="defalutLoginform.phone" id="input__inner" placeholder="请输入手机号码" />
-                  </el-form-item>
-                  <el-form-item label="验证码" prop="code">
-                    <el-input v-model="defalutLoginform.code" id="input__inner" class="code-input" placeholder="请输入验证码" />
-                    <el-button class="send-code-button" :disabled="disableSendCode" @click="handleSendCode">{{
-                      sendCodeText() }}</el-button>
-                  </el-form-item>
-                  <el-form-item class="form-footer">
-                    <el-button type="primary" @click="handleSubmit">{{ activeTab === 'login' ? '登录' : '注册' }}</el-button>
-                    <div class="switch-tab" @click="activeTab = activeTab === 'login' ? 'register' : 'login'">{{ activeTab
-                      === 'login' ? '没有账号？点此注册' : '已有账号？点此登录' }}</div>
-                  </el-form-item>
-                </el-tab-pane>
-                <el-tab-pane label="密码登录">
+            <div>
+              <el-form :model="loginForm" :rules="rules" ref="Loginform" label-width="0">
+                <el-tabs v-model="activeTab">
+                  <el-tab-pane label="注册/登录" name="register">
+                    <el-form-item label="手机号码" prop="phone">
+                      <el-input v-model="loginForm.phone" id="input__inner" placeholder="请输入手机号码" />
+                    </el-form-item>
+                    <el-form-item label="验证码" prop="code">
+                      <el-input v-model="loginForm.code" id="input__inner" class="code-input"
+                        placeholder="请输入验证码" />
+                      <el-button class="send-code-button" :disabled="disableSendCode" @click="handleSendCode">{{
+                        sendCodeText() }}</el-button>
+                    </el-form-item>
+                    <el-form-item class="form-footer">
+                      <el-button type="primary" @click="handleSubmit">{{ activeTab === 'login' ? '登录' : '注册'
+                      }}</el-button>
+                      <div class="switch-tab" @click="activeTab = activeTab === 'login' ? 'register' : 'login'">{{
+                        activeTab
+                        === 'login' ? '没有账号？点此注册' : '已有账号？点此登录' }}</div>
+                    </el-form-item>
+                  </el-tab-pane>
+                  <el-tab-pane label="密码登录">
 
-                  <el-form-item label="邮箱/手机号码" prop="account">
-                    <el-input v-model="defalutLoginform.phone" id="input__inner" placeholder="请输入邮箱/手机号码"></el-input>
-                  </el-form-item>
-                  <el-form-item label="密码" prop="password">
-                    <el-input v-model="defalutLoginform.code" id="input__inner" type="password"
-                      placeholder="请输入密码"></el-input>
-                  </el-form-item>
-                  <el-form-item class="form-footer">
-                    <el-button type="primary" @click="handleSubmit">登录</el-button>
-                  </el-form-item>
+                    <el-form-item label="邮箱/手机号码" prop="account">
+                      <el-input v-model="loginForm.phone" id="input__inner" placeholder="请输入邮箱/手机号码"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password">
+                      <el-input v-model="loginForm.code" id="input__inner" type="password"
+                        placeholder="请输入密码"></el-input>
+                    </el-form-item>
+                    <el-form-item class="form-footer">
+                      <el-button type="primary" @click="handleSubmit">登录</el-button>
+                    </el-form-item>
 
-                </el-tab-pane>
-              </el-tabs>
-            </el-form>
+                  </el-tab-pane>
+                </el-tabs>
+              </el-form>
+            </div>
           </div>
         </div>
       </el-dialog>
@@ -101,10 +106,12 @@
 import { ref, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
-interface Loginform {
+interface LoginForm {
+
   phone: string;
-  code: string;
   email: string;
+  code: string;
+  password: string;
 }
 const activeIndex = ref(1);
 const sendCodeCountdown = ref(60);
@@ -112,8 +119,37 @@ const disableSendCode = ref(false);
 const dialogLoginRegisterVisible = ref(false);
 const dialogVisible = ref(true);
 const activeTab = ref('register');
-const labelPosition = ref('right')
-const rules = {
+const labelPosition = ref('right');
+// const rules = reactive({
+//   phone: [
+//     { required: true, message: '请输入手机号码或邮箱', trigger: 'blur', validator: (rule, value, callback) => {
+//       if (!/^1[3456789]\d{9}$|^(\w-.)+@(\w-?)+(.\w{2,})+$/.test(value)) {
+//         callback(new Error('请输入正确的手机号码或邮箱'));
+//       } else {
+//         callback();
+//       }
+//     }},
+//     {
+//       pattern: /^1[3456789]\d{9}$|^(\w-.)+@(\w-?)+(.\w{2,})+$/,
+//       message: '请输入正确的手机号码或邮箱',
+//       trigger: 'blur'
+//     }
+//   ],
+//   code: [
+//     { required: true, message: '请输入验证码', trigger: 'blur', validator: (rule, value, callback) => {
+//       if (!/^\d{6}$/.test(value)) {
+//         callback(new Error('请输入正确的验证码格式'));
+//       } else {
+//         callback();
+//       }
+//     }},
+//     { pattern: /^\d{6}$/, message: '请输入正确的验证码格式', trigger: 'blur' }
+//   ],
+//   password: [
+//     { required: true, message: '请输入密码', trigger: 'blur' }
+//   ],
+// });
+const rules =  reactive({
   phone: [
     { required: true, message: '请输入手机号码', trigger: 'blur' },
     {
@@ -134,31 +170,47 @@ const rules = {
       trigger: 'blur'
     }
   ],
+  email: [
+    { required: true, message: '请输入邮箱', trigger: 'blur',  },
+    { type: 'email', message: '请输入正确的邮箱格式', trigger: 'blur' }
+  ],
   password: [
     { required: false, message: '请输入密码', trigger: 'blur' }
   ]
-};
-const formLabelAlign = reactive({
-  name: '',
-  region: '',
-  type: '',
-})
-const defalutLoginform = reactive<Loginform>({
-  phone: '',
-  code: '',
-  email: ''
 });
+
+const loginForm = reactive<LoginForm>({
+  phone: '',
+  email: '',
+  code: '',
+  password: ''
+});
+
 function handleClose(done: () => void) {
   // 执行一些逻辑，比如清除表单数据
-  defalutLoginform.phone = '';
-  defalutLoginform.code = '';
+  loginForm.phone = '';
+  loginForm.email = '';
+  loginForm.code = '';
+  loginForm.password = '';
   // 调用 done 函数关闭对话框
   done();
 }
 async function handleSendCode() {
-  // 验证手机号码是否合法
-  const phoneRule = rules.phone;
-  const phone = defalutLoginform.phone;
+  // 验证手机号码或邮箱是否合法
+  const accountRule = rules.phone;
+  const emailRule = rules.email;
+  let phoneValid = false;
+  let emailValid = false;
+
+  if(rules.validateField){
+
+  }
+
+
+  if (!phoneValid && !emailValid) {
+    return;
+  }
+
   // 发送验证码逻辑
   disableSendCode.value = true;
   let countdown = 60;
@@ -171,23 +223,22 @@ async function handleSendCode() {
       sendCodeCountdown.value = 1;
     }
   }, 1000);
-  // 调用 /register 接口逻辑
-  axios.post('http://localhost:8080/user/sendCode', {
-    phone: defalutLoginform.phone, // 替换成您的表单数据main
-  }).then((response: any) => {
-    console.log(response.data)
-    // 处理请求成功的逻辑
-  }).catch((error: any) => {
-    // 处理请求失败的逻辑
-    console.log(error)
+
+  // 调用 /sendCode 接口逻辑
+  const response = await axios.post('http://localhost:8080/user/sendCode', {
+    phone: loginForm.phone,
+    email: loginForm.email,
   });
+
+  console.log(response.data);
 }
+
 function handleSubmit() {
   // 处理表单提交逻辑
   // 调用 /register 接口逻辑
   axios.post('http://localhost:8080/user/login', {
-    phone: defalutLoginform.phone, // 替换成您的表单数据main
-    code: defalutLoginform.code
+    phone: loginForm.phone, // 替换成您的表单数据main
+    code: loginForm.code
   }).then((response: any) => {
     console.log(response.data)
     // 处理请求成功的逻辑
@@ -236,10 +287,20 @@ const route = useRoute();
   width: 100% !important;
 
 }
-.link {
-  text-decoration: none!important;
-  
+
+.el-overlay-dialog {
+  display: flex !important;
+  overflow: hidden !important;
+  border-radius: 80px !important;
+  align-items: center;
+
 }
+
+.link {
+  text-decoration: none !important;
+
+}
+
 .logo {
   font-size: 24px;
   font-weight: bold;
@@ -248,6 +309,7 @@ const route = useRoute();
   margin-left: 0px;
   float: left;
 }
+
 .logo-img {
 
   width: 120px;
@@ -255,6 +317,7 @@ const route = useRoute();
   margin-top: 0px;
 
 }
+
 .no-hover:hover {
   user-select: none;
 }
@@ -269,11 +332,31 @@ const route = useRoute();
 .el-input__wrapper {
   border-radius: 10px !important;
   height: 38px;
-  
+
 }
 
 .el-input__inner:focus {
   border-color: #47e2b1 !important;
+}
+
+.code-input {
+  width: 200px;
+}
+
+.login-register-container {
+  border-radius: 20px;
+
+}
+
+.el-dialog {
+  border-radius: 40px !important;
+}
+
+.el-form-item__content {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-around;
 }
 
 #input__inner:focus {
@@ -286,7 +369,32 @@ const route = useRoute();
   height: 58px;
   box-sizing: border-box;
   float: right;
-  
+
+}
+
+.qr-code-login {
+  display: flex;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.qr-code-login h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.qr-code-login img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.login-register {
+  padding: 50px;
+}
+
+.send-code-btn {
+  margin-left: 10px;
+
 }
 
 .left {
@@ -357,27 +465,4 @@ search-input:focus {
 .footer a {
   color: #fff;
   text-decoration: none;
-}
-
-.qr-code-login {
-  text-align: center;
-  padding-top: 50px;
-}
-
-.qr-code-login h3 {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.qr-code-login img {
-  max-width: 200px;
-  max-height: 200px;
-}
-
-.login-register {
-  padding: 50px;
-}
-
-.send-code-btn {
-  margin-left: 10px;
 }</style>
