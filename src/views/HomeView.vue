@@ -11,7 +11,8 @@
                         <IBanner/>
                         <el-container>
                             <el-main>
-                                <Recommendations/>
+                                <HomeTitle/>
+
                             </el-main>
                             <el-aside>
                                 <Features/>
@@ -36,6 +37,7 @@ import LatestInterviewQuestions from '@/components/LatestInterviewQuestions.vue'
 import Recommendations from '@/components/Recommendations.vue';
 import Features from '@/components/Features.vue';
 import INavbar from '@/components/INavbar.vue';
+import HomeTitle from '@/components/HomeTitle.vue';
 
 export default {
     components: {
@@ -45,7 +47,8 @@ export default {
         LatestInterviewQuestions,
         Recommendations,
         Features,
-        INavbar
+        INavbar,
+        HomeTitle
     },
 };
 </script>

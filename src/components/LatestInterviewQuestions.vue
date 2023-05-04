@@ -129,6 +129,7 @@ export default {
     padding: 16px;
     padding-top: 1px;
     width: 78%;
+
 }
 
 .interview-questions-header {

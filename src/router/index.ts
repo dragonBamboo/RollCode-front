@@ -2,12 +2,19 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import QuestionsView from '../views/QuestionsView.vue'
 import InterView from '../views/InterView.vue'
+import AboutView from '../views/AboutView.vue'
+import Recommendations from '../components/Recommendations.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    children: [
+      { path: '', component: Recommendations, name: 'recommendations'},
+      { path: 'home', component: HomeView, name: 'home' },
+      { path: 'about', component: InterView, name: 'about' }
+    ]
   },
   {
     path: '/about',

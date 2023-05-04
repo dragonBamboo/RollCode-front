@@ -5,7 +5,9 @@
       <el-row justify="center">
         <el-col :span="2">
           <!-- Logo -->
-          <div class="logo">Your Logo</div>
+          <img src="../assets/logo.png" target="_blank" class="logo-img"/>
+          <!-- <el-image src="../assets/logo.png" fit="contain"></el-image> -->
+
         </el-col>
         <el-col :span="7">
           <!-- 导航栏 -->
@@ -246,7 +248,13 @@ const route = useRoute();
   margin-left: 0px;
   float: left;
 }
+.logo-img {
 
+  width: 120px;
+  margin-left: 1px;
+  margin-top: 0px;
+
+}
 .no-hover:hover {
   user-select: none;
 }
