@@ -5,6 +5,7 @@ import InterView from '../views/InterView.vue'
 import AboutView from '../views/AboutView.vue'
 import Recommendations from '../components/Recommendations.vue'
 
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',

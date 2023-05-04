@@ -20,11 +20,11 @@
                                 <LatestInterviewQuestions/>
                             </el-aside>
                         </el-container>
-
                     </el-main>
                 </el-col>
             </el-row>
         </el-container>
+      <Footer></Footer>
     </div>
 </template>
 

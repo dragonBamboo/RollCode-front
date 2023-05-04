@@ -9,6 +9,7 @@ import Test2 from '@/components/Test2.vue';
 import ElementPlus from "element-plus"
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import Footer from '@/components/Footer.vue';
 const app = createApp(App);
 
 app.use(store);
@@ -21,4 +22,5 @@ app.component('INavbar', INavbar);
 app.component('Test2', Test2);
 // app.component('LoginorRegister', LoginorRegister);
 app.component('HotestPost',HotestPost)
+app.component('Footer',Footer)
 app.mount('#app');
