@@ -1,7 +1,7 @@
 <template>
     <div class="job-toolbox">
         <div class="tool-header">
-            <img src="../assets/1.png" class="tool-box-icon" />
+            <img src="@/assets/1.png" class="tool-box-icon" />
             <h2 class="title">求职工具箱</h2>
         </div>
         <div class="tool-body">

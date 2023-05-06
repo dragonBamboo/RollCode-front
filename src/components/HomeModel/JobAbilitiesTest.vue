@@ -1,7 +1,7 @@
 <template>
   <div class="job-abilities">
     <div class="abilities-header">
-      <img src="../assets/2.png" class="abilities-box-icon" />
+      <img src="@/assets/2.png" class="abilities-box-icon" />
       <h2 class="title">职业能力测评</h2>
     </div>
     <div class="abilities-body">

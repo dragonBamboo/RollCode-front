@@ -1,106 +1,112 @@
 <template>
-    <el-dialog v-model="dialogLoginRegisterVisible" title="登录/注册" width="600px">
-        <div class="qr-login">
-          <img src="path/to/your/qr-code.png" alt="二维码" />
-          <p>扫码登录</p>
-        </div>
-        <div class="tabs-wrapper">
-          <el-tabs >
-            <el-tab-pane label="注册登录" name="register">
-              <el-form ref="registerForm" :model="registerForm" :rules="rules">
-                <el-form-item label="手机号码" prop="phone">
-                  <el-input v-model="registerForm.phone" placeholder="请输入手机号"></el-input>
-                </el-form-item>
-                <el-form-item label="验证码" prop="verificationCode">
-                  <el-input v-model="registerForm.verificationCode" placeholder="请输入验证码"></el-input>
-                  <el-button @click="sendVerificationCode">发送验证码</el-button>
-                </el-form-item>
-                <el-form-item>
-                  <el-button type="primary" @click="register">注册/登录</el-button>
-                </el-form-item>
-              </el-form>
-            </el-tab-pane>
-            <el-tab-pane label="密码登录" name="password">
-              <el-form ref="passwordForm" :model="passwordForm">
-                <el-form-item label="邮箱/手机号">
-                  <el-input v-model="passwordForm.emailOrPhone" placeholder="请输入邮箱/手机号"></el-input>
-                </el-form-item>
-                <el-form-item label="密码">
-                  <el-input v-model="passwordForm.password" type="password" placeholder="请输入密码"></el-input>
-                </el-form-item>
-                <el-form-item>
-                  <el-button type="primary" @click="login">登录</el-button>
-                </el-form-item>
-              </el-form>
-            </el-tab-pane>
-          </el-tabs>
-        </div>
-      </el-dialog>
-  </template>
-  
-  <script>
-  import { ref } from "vue";
-  
-  export default {
-    name: 'LoginorRegister',
-    setup() {
-      const dialogVisible = ref(true);
-      const activeTab = ref("register");
-      const registerForm = ref({
-        phone: '',
-        verificationCode: '',
-      });
-      const passwordForm = ref({
-        emailOrPhone: '',
-        password: '',
-      });
-  
-      const rules = {
-        phone: [
-          { required: true, message: "请输入手机号", trigger: "blur" },
-          { pattern: /^1\d{10}$/, message: "请输入正确的手机号", trigger: "blur" },
-        ],
-        verificationCode: [
-          { required: true, message: "请输入验证码", trigger: "blur" },
-        ],
-      };
-  
-      const sendVerificationCode = () => {
-        // 发送验证码的逻辑
-      };
-  
-      const register = () => {
-        // 注册/登录的逻辑
-      };
-  
-      const login = () => {
-        // 密码登录的逻辑
-      };
-  
+  <div class="get-mobile" @touchmove.prevent>
+      <div class="main">
+          <div class="pt-20 pr-15 pl-15 pb-20">
+              <input class="input mb-15" v-model="form.tel" placeholder="请输入手机号" type="number">
+              <div class="box">
+                  <input class="input" v-model="form.telVerificationCode" placeholder="请输入短信验证码" type="number">
+                  <div class="el-button" @click="send">{{ countDown }}</div>
+              </div>
+          </div>
+          <div class="btn" @click="sumbit">提交</div>
+      </div>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'GetMobile',
+  data() {
       return {
-        dialogVisible,
-        activeTab,
-        registerForm,
-        passwordForm,
-        rules,
-        sendVerificationCode,
-        register,
-        login,
-        dialogLoginRegisterVisible: false,
+          form: {
+              telVerificationCode: '',
+              tel: '',
+          },
+          countDown: "发送验证码", // 倒计时
+          bVerification: false // 节流
       }
-    }
+  },
+  methods: {
+      async sumbit() {
+          const { telVerificationCode, tel } = this.form
+          if (!telVerificationCode || !tel) return console.log("请输入手机号和验证码");
+          let { code, data } = await login({
+              tel,
+              telVerificationCode,
+              isOffline: false
+          });
+          if (code === 200) {
+              console.log('登录成功');
+              this.$emit('sumbit', data.userInfo);
+              this.$emit('update:dialog', false)
+          }
+      },
+      async send() {
+          if (!/^\d{11}$/.test(this.form.tel)) return console.log("请先输入正确的手机号");
+          if (this.bVerification) return;
+          this.bVerification = true;
+          const { code } = await sendLoginMsgCode({
+              tel: this.form.tel
+          });
+          if (code === 200) {
+              console.log("发送验证码...");
+          }
+          let countDown = 59;
+          const auth_time = setInterval(() => {
+              this.countDown = countDown--;
+              if (this.countDown <= 0) {
+                  this.bVerification = false;
+                  this.countDown = "发送验证码";
+                  clearInterval(auth_time);
+              }
+          }, 1000);
+      }
   }
-  </script>
-  
-  <style scoped>
-  .qr-login {
-    float: left;
-    width: 200px;
-    text-align: center;
+}
+</script>
+
+<style lang='less' scoped>
+.get-mobile {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, .6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .main {
+      width: 280px;
+      height: 178px;
+      background: #FFFFFF;
+      border-radius: 5px;
+
+      .input {
+          border: 1px solid #EBEBEF;
+          border-radius: 5px;
+          height: 40px;
+          padding-left: 10px;
+      }
+
+      .el-button {
+          margin-left: 10px;
+          border-radius: 5px;
+          background: #5F93FD;
+          color: #fff;
+          width: 140px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .btn {
+          height: 45px;
+          color: #5F93FD;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-top: 1px solid #EBEBEF;
+      }
   }
-  
-  .tabs-wrapper {
-    float: right;
-    width: 380px;
-  }
-  </style>
+}
+</style>

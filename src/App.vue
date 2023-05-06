@@ -7,6 +7,34 @@
   </nav> -->
 </template>
 
+<script lang="ts">
+import { defineComponent, computed, onMounted} from 'vue'
+import { useStore } from 'vuex'
+import { UserToken } from './store'
+export default defineComponent({
+    name: 'App',
+    setup() {
+        const store = useStore<UserToken>()
+     
+        //防止登录后刷新页面 重新获取用户信息 做到持久化登录状态
+        onMounted(() => {
+            const token = store.state.token
+            if(token) {
+                store.dispatch('fetchCurrentUser')
+            }
+        })
+        const currentUser = computed(() => {
+            return store.state.user
+        })
+ 
+        return {
+            currentUser,
+            
+        }
+    }
+})
+</script>
+
 <style lang="less">
 
 #app {

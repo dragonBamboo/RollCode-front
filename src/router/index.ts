@@ -3,8 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import QuestionsView from '../views/QuestionsView.vue'
 import InterView from '../views/InterView.vue'
 import AboutView from '../views/AboutView.vue'
-import Recommendations from '../components/Recommendations.vue'
-
+import Recommendations from '../components/HomeModel/Recommendations.vue'
+import LoginorRegister  from '../components/LoginorRegister.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -33,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/interviews',
     name: 'interviews',
     component: InterView
+  },
+  {
+    path: '/LoginorRegister',
+    name: 'LoginorRegister',
+    component: LoginorRegister
   }
 ]
 

@@ -1,32 +1,6 @@
 <template>
   <div class="recommendations">
-<!-- 
-    <div class="recommendations-header">
-      <el-row class="row-bg" justify="space-between">
-        <el-col :span="2">
-          <div class="r-btn-parent">
-            <router-link to="/about" exact replace tag="button" type="primary" class="my-button recommend-text">
-              推荐
-            </router-link>    
-            <router-link to="/home" tag="button" type="primary" class="my-button recommend-text">
-              推荐
-            </router-link>  
-            
-          </div>
-        </el-col>
-        <el-col :span="2">
-          <div class="r-btn-parent">
-            <el-button class="my-button" text type="primary" @click="refreshData">刷新
-              <el-icon>
-                <RefreshRight />
-              </el-icon>
-            </el-button>
-          </div>
-        </el-col>
-      </el-row>
-    </div> -->
     <div class="content">
-
       <div class="content-css">
         
         <ul>

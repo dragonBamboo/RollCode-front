@@ -30,14 +30,14 @@
 
 <script lang="ts">
 
-import IBanner from '@/components/IBanner.vue';
-import JobAbilitiesTest from '@/components/JobAbilitiesTest.vue';
+import IBanner from '@/components/HomeModel/IBanner.vue';
+import JobAbilitiesTest from '@/components/HomeModel/JobAbilitiesTest.vue';
 import PopularQuestions from '@/components/PopularQuestions.vue';
 import LatestInterviewQuestions from '@/components/LatestInterviewQuestions.vue';
-import Recommendations from '@/components/Recommendations.vue';
-import Features from '@/components/Features.vue';
-import INavbar from '@/components/INavbar.vue';
-import HomeTitle from '@/components/HomeTitle.vue';
+import Recommendations from '@/components/HomeModel/Recommendations.vue';
+import Features from '@/components/HomeModel/Features.vue';
+import INavbar from '@/components/GlobalModel/INavbar.vue';
+import HomeTitle from '@/components/HomeModel/HomeTitle.vue';
 
 export default {
     components: {
@@ -50,6 +50,13 @@ export default {
         INavbar,
         HomeTitle
     },
+    mounted() {
+        //派发actions，获取floor组件的数据
+        // store.dispatch('getFloorList')
+        // //获取用户信息在首页展示
+        // store.dispatch('getUserInfo')
+
+    }
 };
 </script>
 

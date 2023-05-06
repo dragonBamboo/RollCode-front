@@ -18,7 +18,7 @@
 import { defineComponent, ref, onMounted } from 'vue';
 import axios from 'axios';
 import Recommendations from './Recommendations.vue';
-import PopularQuestions from './PopularQuestions.vue';
+import PopularQuestions from '../PopularQuestions.vue';
 
 const activeName = ref('first')
 

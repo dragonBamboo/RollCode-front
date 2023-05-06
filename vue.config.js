@@ -3,6 +3,7 @@ module.exports = defineConfig({
 
   devServer: {
     port: 8081,
+    open:true,
     proxy: {
       '/sendMsg': {
         target: 'http://localhost:8080',
@@ -10,7 +11,9 @@ module.exports = defineConfig({
         // pathRewrite: {
         //   '^/sendMsg': ''
         // }
-      }
+      },
+
+
     }
   },
   transpileDependencies: true

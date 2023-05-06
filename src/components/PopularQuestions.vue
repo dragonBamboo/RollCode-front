@@ -1,7 +1,7 @@
 <template>
   <div class="popular-questions">
     <div class="questions-header">
-      <img src="../assets/2.png" class="questions-box-icon" />
+      <img src="@/assets/2.png" class="questions-box-icon" />
       <h2 class="title">职业能力测评</h2>
     </div>
     <div class="questions-body">
@@ -11,9 +11,9 @@
           <h3 class="item-label">{{ exp.label }}</h3>
         </div>
         <ul class="item-list">
-          <li class="item-link" v-for="(link, i) in exp.links" :key="i">
+          <!-- <li class="item-link" v-for="(link, i) in exp.links" :key="i">
             <el-link :href="link.href" :target="link.target" :title="link.title">{{ link.text }}</el-link>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>

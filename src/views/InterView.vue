@@ -2,8 +2,7 @@
   
   <div class="INavbar">
     <INavbar/>
-    <IBanner/>
-    <Test2/>
+    <LoginorRegister/>
 </div>
   
 </template>
@@ -12,6 +11,7 @@
 
 export default {
   components: {
+
   },
 };
 </script>
