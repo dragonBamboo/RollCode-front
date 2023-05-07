@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import QuestionsView from '../views/QuestionsView.vue'
 import InterView from '../views/InterView.vue'
-import AboutView from '../views/AboutView.vue'
+import ExamView from '@/views/ExamView.vue'
 import Recommendations from '../components/HomeModel/Recommendations.vue'
 import LoginorRegister  from '../components/LoginorRegister.vue'
 const routes: Array<RouteRecordRaw> = [
@@ -38,7 +38,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/LoginorRegister',
     name: 'LoginorRegister',
     component: LoginorRegister
-  }
+  },
+  {
+    path: '/exam',
+    name: 'Exam',
+    component: ExamView
+  },
 ]
 
 const router = createRouter({

@@ -11,10 +11,10 @@
         </el-col>
         <el-col :span="7">
           <!-- 导航栏 -->
-          <el-menu class="menu" default-active="1" mode="horizontal">
-            <el-menu-item index="1"><router-link class="link" to="/home">首页</router-link></el-menu-item>
-            <el-menu-item index="2"><router-link class="link" to="/questions">题库</router-link></el-menu-item>
-            <el-menu-item index="3"><router-link class="link" to="/">面试</router-link></el-menu-item>
+          <el-menu class="menu" mode="horizontal" :default-active="currentRoute">
+            <el-menu-item index="/home"><router-link class="link" to="/home">首页</router-link></el-menu-item>
+            <el-menu-item index="/questions"><router-link class="link" to="/questions">题库</router-link></el-menu-item>
+            <el-menu-item index="/"><router-link class="link" to="/">面试</router-link></el-menu-item>
           </el-menu>
         </el-col>
         <el-col :span="6">
@@ -191,16 +191,15 @@ interface LoginForm {
   agreed: false
 }
 
+const route = useRoute();
+
 const store = useStore();
 const sendCodeCountdown = ref(60);
 const disableSendCode = ref(false);
 const dialogLoginRegisterVisible = ref(false);
 const activeTab = ref('register');
-const labelPosition = ref('right');
-const showAgreementTip = ref(true);
-const formRef = ref(null); // 创建一个引用
+const currentRoute = route.path
 const buttonRef = ref()
-const popoverRef = ref()
 const userToken = computed(() => store.state.token);
 const user = computed(() => store.state.user);
 const rules = reactive({
@@ -220,33 +219,6 @@ const rules = reactive({
     { required: false, message: '请输入验证码', trigger: 'blur' },
     { pattern: /^\d{6}$/, message: '验证码格式不正确', trigger: 'blur' }
   ],
-  // account: [
-  //   { required: true, message: '请输入邮箱/手机号码', trigger: 'blur' },
-  //   {
-  //     pattern: /^1[3456789]\d{9}$|^(\w-.)+@(\w-?)+(.\w{2,})+$/,
-  //     message: '邮箱/手机号码格式不正确',
-  //     trigger: 'blur'
-  //   }
-  // ],
-  // email: [
-  //   {
-  //     required: true,
-  //     message: '请输入邮箱地址',
-  //     trigger: 'blur'
-  //   },
-  //   {
-  //     type: 'email',
-  //     message: '请输入正确的邮箱地址',
-  //     trigger: ['blur', 'change']
-  //     validator: (rule, value, callback) => {
-  //       if (value && !/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value)) {
-  //         callback(new Error('请输入正确的邮箱地址'));
-  //       } else {
-  //         callback();
-  //       }
-  //     },
-  //   }
-  // ],
   password: [
     { required: false, message: '请输入密码', trigger: 'blur' }
   ],
@@ -254,7 +226,6 @@ const rules = reactive({
     { required: true, message: '请同意注册协议和隐私政策', trigger: 'change' }
   ]
 });
-const validator = new Schema(rules);
 
 const loginForm = reactive<LoginForm>({
   phone: '',
@@ -401,10 +372,10 @@ function sendCodeText() {
   return disableSendCode.value ? `重新发送(${sendCodeCountdown.value})` : '发送验证码';
 }
 
-const route = useRoute();
+
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 /* 导航栏样式 */
 .navbar {
 
