@@ -114,7 +114,7 @@ export default {
       .title {
         display: flex;
         font-weight: bold;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
 
       .options {
@@ -124,6 +124,14 @@ export default {
         .option {
           display: flex;
           margin-bottom: 10px;
+          padding: 10px;
+        }
+        .option:hover {
+          background-color: #f7f8f8;
+          border-radius: 5px;
+        }
+        .option:checked {
+          background-color: aqua!important;
         }
       }
     }
@@ -131,5 +139,19 @@ export default {
 }
 .el-radio-group{
     align-items: normal;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+ 
 }
+
+/* 选中的标签 */
+/deep/.el-radio__input.is-checked + .el-radio__label {
+  color: #32ca99;
+}
+/deep/.el-radio__input.is-checked .el-radio__inner {
+  border-color: #32ca99;
+  background: #32ca99;
+}
+
 </style>
